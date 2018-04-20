@@ -41,7 +41,7 @@ void servo_set(uint8_t val)
 {
 	// Here we're mapping 0-255 to 20-80
 	// (Without division!)
-	val >>= 1;//now 0-64
+	val >>= 2;//now 0-64
 	val += SERVO_LOW;// Now 20-84
 	val -= 2;// Now 18-82
 
@@ -64,15 +64,17 @@ void servo_run(void (*callback)(void))
 		if (compare < 2)
 			// Toggle
 			servo_port->datain = (1<<servo_bit);
+	
+		/* Do what we need to do */
+		if(callback != NULL)
+			callback();
+
 		// Poll
 		// Mask for output compare A flag
 		while((*TIFR0 & 0x02) == 0);
 		// (Clear flag)
 		*TIFR0 = 0x02;
 		
-		/* Do what we need to do */
-		if(callback != NULL)
-			callback();
 
 		compare++;
 		if(compare == 4) compare = 0;
