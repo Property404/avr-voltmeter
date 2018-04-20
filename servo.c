@@ -24,10 +24,10 @@ void servo_init(volatile io_port_t* port, uint8_t bit)
 {
 	servo_bit = bit;
 	servo_port = port;
-	servo_port->ddr &= 1<<bit;
+	servo_port->ddr = 1<<bit;
 
 	// Start at 0 degrees
-	tc0->outputCompareA = SERVO_LOW;
+	tc0->outputCompareA = 20;//SERVO_LOW;
 
 	// Select PWM Correct phase mode
 	tc0->controlA = 0x81;
