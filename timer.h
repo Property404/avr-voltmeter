@@ -7,7 +7,7 @@
 #define TC2_ADDRESS 0x00B0
 #define TC2_INT_FLAG_REG_ADDRESS 0x0037
 
-typedef struct timer8 {
+typedef struct __timer8_t {
   uint8_t controlA;
   uint8_t controlB;
   uint8_t counter;

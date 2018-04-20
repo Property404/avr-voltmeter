@@ -6,7 +6,7 @@ BUILD_DIR = .
 
 NAME = $(BUILD_DIR)/voltmeter
 
-OBJECTS = main.o delay.o
+OBJECTS = main.o delay.o servo.o
 
 SOURCES = $(OBJECTS:%.o=$(SRC_DIR)/%.o)
 
