@@ -13,10 +13,11 @@ int main()
 	portb->dataout = 0x00;
 	adc_init();
 
+	uint16_t value;
 	while(true)
 	{
-		uint8_t value = (adc_read() >> 8);
-		portb->dataout = value;
+		if((value = adc_read()) != ADC_NOT_READY)
+			portb->dataout = (value>>8);
 	}
 }
 

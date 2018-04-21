@@ -1,6 +1,14 @@
 #include "adc.h"
-
-
+typedef struct adc{
+	uint8_t ADCL;
+	uint8_t ADCH;
+	uint8_t ADCSRA;
+	uint8_t ADCSRB;
+	uint8_t ADMUX;
+	uint8_t not_used;
+	uint8_t DIDR0;
+	uint8_t DIDR1;
+}adc_t;
 
 volatile adc_t *adcs = (adc_t*)0x0078;
 volatile uint8_t* PRR = (uint8_t*) 0x64;
@@ -19,8 +27,14 @@ uint16_t adc_read(void)
 {
 	adcs->ADCSRA |=
 		0x50;
-	while((adcs->ADCSRA &
-				0x10) == 0);
+
+	// If we're not ready, raise
+	if((adcs->ADCSRA &
+				0x10) == 0)
+	{
+		return ADC_NOT_READY;
+	}
+
 
 	// Low value has to be read first
 	// according to data sheet
