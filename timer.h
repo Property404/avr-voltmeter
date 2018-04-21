@@ -15,8 +15,4 @@ typedef struct __timer8_t {
   uint8_t outputCompareB;
 } timer8_t;
 
-// Delay in milliseconds
-// Implementation for this function is in delay.c
-void delay(uint16_t);
-
 #endif

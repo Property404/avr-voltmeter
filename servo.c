@@ -2,7 +2,6 @@
 #include "timer.h"
 #include <stdlib.h>
 //Note: this servo uses TC0
-// TC2 is used by delay() in delay.c
 static volatile timer8_t* tc0 = (timer8_t*)0x0044;
 
 // Min and max compare values of the servo
