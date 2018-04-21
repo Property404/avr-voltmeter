@@ -5,7 +5,6 @@
 #include <stdbool.h>
 
 volatile io_port_t* portb = (io_port_t*)PORT_B_ADDRESS;
-volatile io_port_t* portd = (io_port_t*)PORT_D_ADDRESS;
 
 void callback(void);
 
@@ -16,7 +15,7 @@ int main()
 	// Use portb, bit 0 for the servo
 	servo_init(portb, 0);
 	// Start at angle 0
-	servo_set(255);
+	servo_set(0);
 	// Run the callback continuously while maintaining the pulse
 	servo_run(callback);
 
