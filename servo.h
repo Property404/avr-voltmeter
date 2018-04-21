@@ -11,6 +11,7 @@ void servo_init(volatile io_port_t* port, uint8_t bit);
 void servo_set(uint8_t val);
 
 // This is an infinite loop that controls the PWM
-// for the servo. Additionally, it excutes a callback function when appropriate. (as to appear that the callback is continuously running)
+// for the servo. Additionally, it excutes a callback function when
+// appropriate. (as to appear that the callback is continuously running)
 void servo_run(void (*callback)(void));
 #endif

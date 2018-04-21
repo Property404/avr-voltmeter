@@ -1,0 +1,69 @@
+\documentclass[12pt]{report}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\title{\textbf{Analog Voltmeter Project}}
+\author{
+	Dagan Martinez\\
+}
+
+\begin{document}
+\maketitle
+
+\section*{Equipment and Components}
+\begin{itemize}
+	\item Laptop with appropriate software and specs
+		\begin{itemize}
+			\item Fedora Linux 27 
+			\item AVR toolchain
+				\begin{itemize}
+					\item avr-gcc
+					\item avr-objcopy
+					\item avrdude
+					\item GNU Make
+				\end{itemize}
+			\item Git
+			\item Text editor or C IDE of choice
+			\item \textgreater = 2G RAM
+		\end{itemize}
+	\item Arduino UNO
+	\item USB adapter for Arduino UNO
+	\item Breadboard
+	\item Wires
+	\item 3 $100\Omega$ resistors(for testing voltage)
+	\item SG90 servo motor
+\end{itemize}
+
+\newpage
+\section*{Circuit Schematic}
+
+\textbf{Voltmeter Schematic}\\
+This shows just the wiring for the voltmeter\\
+
+\includegraphics[width=10cm]{voltmeter_schematic.jpg}\\
+
+
+\textbf{Test Schematic}\\
+This circuit was used to test the functionality of the voltmeter\\
+
+\includegraphics[width=10cm]{test_schematic.jpg}
+
+\newpage
+\section*{Results}
+Before attaching A0 to a known voltage, the servo fluctuates wildly. Upon
+connecting A0 to ground, the servo switches to a \ang{0} angle. Upon connecting
+it to the next node, the servo swings to approximately \ang{60} (as expected by
+the voltage divider). Connecting it to the node after that, the servo swings to
+around \ang{120}. Finally, connecting A0 to Vcc swings the servo to \ang{180}.
+
+\section*{Conclusion}
+The voltmeter code was written to be modular. A callback function was used to control the
+servo and read from A0 while other code was busy maintaining the pulse to the
+servo. Using callbacks allows me to reuse the code later for a similar project
+without changing the implementation.\\
+
+\noindent	While the voltmeter works completely as expected, the range of the voltmeter is
+only from 0 to about Vcc. This range can be extended by using resistors to
+scale a larger voltage down to the 0-to-Vcc range. While this isn't in the
+scope of this project, this technique might be able to be used in a future
+application of ADC.
+\end{document}
