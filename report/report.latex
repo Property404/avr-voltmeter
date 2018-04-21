@@ -59,7 +59,7 @@ around \ang{120}. Finally, connecting A0 to Vcc swings the servo to \ang{180}.
 The voltmeter code was written to be modular. A callback function was used to control the
 servo and read from A0 while other code was busy maintaining the pulse to the
 servo. Using callbacks allows me to reuse the code later for a similar project
-without changing the implementation.\\
+without changing the implementation much.\\
 
 \noindent	While the voltmeter works completely as expected, the range of the voltmeter is
 only from 0 to about Vcc. This range can be extended by using resistors to
