@@ -1,4 +1,5 @@
 #include "adc.h"
+#include <stdbool.h>
 typedef struct adc{
 	uint8_t ADCL;
 	uint8_t ADCH;
@@ -25,8 +26,15 @@ void adc_init(void)
 // (Of course, extended to 16-bit)
 uint16_t adc_read(void)
 {
-	adcs->ADCSRA |=
-		0x50;
+	// Initialize read if we haven't started
+	// Otherwise, we just skip to the checking if we're ready yet part
+	static bool started_read = false;
+	if(!started_read)
+	{
+		adcs->ADCSRA |=
+			0x50;
+		started_read = true;
+	}
 
 	// If we're not ready, raise
 	if((adcs->ADCSRA &
@@ -34,6 +42,8 @@ uint16_t adc_read(void)
 	{
 		return ADC_NOT_READY;
 	}
+	// Reset
+	started_read = false;
 
 
 	// Low value has to be read first

@@ -7,52 +7,35 @@
 volatile io_port_t* portb = (io_port_t*)PORT_B_ADDRESS;
 volatile io_port_t* portd = (io_port_t*)PORT_D_ADDRESS;
 
+void callback(void);
+
 int main()
 {
-	portb->ddr = 0x03;
-	portb->dataout = 0x00;
+	// Intialize analog-to-digital conversion stuff
 	adc_init();
+	// Use portb, bit 0 for the servo
+	servo_init(portb, 0);
+	// Start at angle 0
+	servo_set(255);
+	// Run the callback continuously while maintaining the pulse
+	servo_run(callback);
 
-	uint16_t value;
-	while(true)
-	{
-		if((value = adc_read()) != ADC_NOT_READY)
-			portb->dataout = (value>>8);
-	}
+	// Never reach this point
+	return 0;
 }
 
-/*
 void callback(void)
 {
+	// We compare to old value so we're not running servo_set() too much
+	// Because we don't want to affect the PWM
 	static uint16_t old_value = 0;
 	uint16_t value = adc_read();
-	if(old_value != value)
+
+	if(value != ADC_NOT_READY && value != old_value)
 	{
+		// Map a 10-bit value to an 8-bit value
 		servo_set((uint8_t)(value>>2));
+		//servo_set(0);
 		old_value = value;
 	}
-
-	*/
-/*
-	static uint8_t a=0;
-	static uint8_t s=0;
-	a++;
-	if(a == 0 || a==128)
-	{
-		s++;
-		servo_set(s);
-	}
-	*/
-/*
 }
-
-	
-
-int main()
-{
-	adc_init();
-	servo_init(portb, 0);
-	servo_set(0);
-	servo_run(callback);
-}
-*/
