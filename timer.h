@@ -2,6 +2,8 @@
 #define __TIMER_H__
 #include <stdint.h>
 
+// TC0 and TC2 are 8 bit timers
+// TC1 is a 16 bit timer
 #define TC0_ADDRESS 0x0044
 #define TC0_INT_FLAG_REG_ADDRESS 0x0035
 #define TC2_ADDRESS 0x00B0
