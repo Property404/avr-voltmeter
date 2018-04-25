@@ -4,27 +4,23 @@
 \title{\textbf{Analog Voltmeter Project}}
 \author{
 	Dagan Martinez\\
+	\\
+	Partner: Jenario Johnson
 }
 
 \begin{document}
 \maketitle
 
 \section*{Equipment and Components}
+\textbf{Equipment}
 \begin{itemize}
 	\item Laptop with appropriate software and specs
-		\begin{itemize}
-			\item Fedora Linux 27 
-			\item AVR toolchain
-				\begin{itemize}
-					\item avr-gcc
-					\item avr-objcopy
-					\item avrdude
-					\item GNU Make
-				\end{itemize}
-			\item Git
-			\item Text editor or C IDE of choice
-			\item \textgreater = 2G RAM
-		\end{itemize}
+	\item Oscilloscope 
+	\item Digital multimeter
+\end{itemize}
+
+\noindent\textbf{Components}
+\begin{itemize}
 	\item Arduino UNO
 	\item USB adapter for Arduino UNO
 	\item Breadboard
